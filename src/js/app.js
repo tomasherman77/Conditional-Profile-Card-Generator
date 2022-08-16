@@ -28,19 +28,37 @@ function render(variables = {}) {
   // if includeCover==false then we reset the cover code without the <img> tag to make the cover transparent.
   let cover = `<div class="cover"><img src="${variables.background}" /></div>`;
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
+  let nombre = "Lucy";
+  let apellido = "Boilett";
+  if (variables.name !== null) nombre = variables.name;
+  if (variables.lastname !== null) apellido = variables.lastname;
+  let posicion =
+    variables.socialMediaPosition !== "position-left"
+      ? (posicion = "position-right")
+      : "position-left";
+  let rol = variables.role !== null ? variables.role : " ";
+  let ciudad = variables.city !== null ? variables.city : "Narnia";
+  let pais = variables.country !== null ? variables.country : "Oz Kingdom";
+  let twt = variables.twitter !== null ? variables.twitter : "4geeksacademy";
+  let gthb = variables.github !== null ? variables.github : "4geeksacademy";
+  let lnkdn =
+    variables.linkedin !== null ? variables.linkedin : "4geeksacademy";
+  let instgrm =
+    variables.instagram !== null ? variables.instagram : "4geeksacademy";
+  //En caso de no usar operador tenrario => if (variables.role !== null) rol = variables.role; https://twitter.com/4geeksacademy
 
   // reset the website body with the new html output
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
           <img src="${variables.avatarURL}" class="photo" />
-          <h1>Lucy Boilett</h1>
-          <h2>Web Developer</h2>
-          <h3>Miami, USA</h3>
-          <ul class="position-right">
-            <li><a href="https://twitter.com/4geeksacademy"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="https://github.com/4geeksacademy"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://linkedin.com/4geeksacademy"><i class="fab fa-linkedin"></i></a></li>
-            <li><a href="https://instagram.com/4geeksacademy"><i class="fab fa-instagram"></i></a></li>
+          <h1>${nombre} ${apellido}</h1>
+          <h2>${rol}</h2>
+          <h3>${ciudad}, ${pais}</h3>
+          <ul class="${posicion}">
+            <li><a href="https://twitter.com/${twt}"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://github.com/${gthb}"><i class="fab fa-github"></i></a></li>
+            <li><a href="https://linkedin.com/${lnkdn}"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="https://instagram.com/${instgrm}"><i class="fab fa-instagram"></i></a></li>
           </ul>
         </div>
     `;
@@ -61,7 +79,7 @@ window.onload = function() {
     socialMediaPosition: "position-left",
     // social media usernames
     twitter: null,
-    github: "alesanchezr",
+    github: null,
     linkedin: null,
     instagram: null,
     name: null,
